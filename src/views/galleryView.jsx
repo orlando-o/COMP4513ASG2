@@ -1,0 +1,3 @@
+const GalleryView = (props) => {
+  return;
+};

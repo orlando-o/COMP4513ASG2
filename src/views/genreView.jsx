@@ -1,0 +1,3 @@
+const GenreView = (props) => {
+  return;
+};

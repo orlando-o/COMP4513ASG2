@@ -1,0 +1,3 @@
+const PaintingView = (props) => {
+  return;
+};

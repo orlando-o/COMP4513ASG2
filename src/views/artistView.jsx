@@ -1,0 +1,3 @@
+const ArtistView = (props) => {
+  return;
+};
