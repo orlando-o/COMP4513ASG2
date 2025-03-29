@@ -1,3 +1,6 @@
+import Header from "./partials/header";
+
 const PaintingView = (props) => {
-  return;
+  return <Header redirect={props.redirect} />;
 };
+export default PaintingView;

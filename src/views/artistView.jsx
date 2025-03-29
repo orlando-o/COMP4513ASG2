@@ -1,3 +1,7 @@
+import Header from "./partials/header";
+
 const ArtistView = (props) => {
-  return;
+  return <Header redirect={props.redirect} />;
 };
+
+export default ArtistView;
