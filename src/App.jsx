@@ -40,6 +40,20 @@ function App() {
     navigate(`/${target}`);
   }
 
+  async function fetchApi(endpoint) {
+    const url =
+      "https://comp4513-a1-orlando-ormon.onrender.com/api/" + endpoint;
+    console.log("Fetching from:", url);
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching:", error);
+    }
+  }
+
   return (
     <main>
       <Routes>
@@ -51,11 +65,21 @@ function App() {
             <GalleryView
               redirect={redirect}
               addToFavourites={addToFavourites}
+              fetchApi={fetchApi}
             />
           }
         />
         <Route path="artist" element={<ArtistView redirect={redirect} />} />
-        <Route path="genre" element={<GenreView redirect={redirect} />} />
+        <Route
+          path="genre"
+          element={
+            <GenreView
+              redirect={redirect}
+              addToFavourites={addToFavourites}
+              fetchApi={fetchApi}
+            />
+          }
+        />
         <Route path="painting" element={<PaintingView redirect={redirect} />} />
       </Routes>
     </main>

@@ -2,31 +2,18 @@
 import Header from "./partials/header";
 import { useEffect, useState } from "react";
 import GalleryInfo from "./partials/galleryInfo";
-import PaintingsTable from "./partials/paintingsTable";
+import { GalleryPaintingsTable } from "./partials/paintingTables";
 import GalleryList from "./partials/galleryList";
 
-const GalleryView = (props) => {
+const GalleryView = ({ redirect, addToFavourites, fetchApi }) => {
   const [galleryList, setGalleryList] = useState([]);
   const [selectedGallery, setGallery] = useState(null);
   const [paintingList, setPaintings] = useState([]);
 
-  function displayPaintings(gallery) {
+  async function displayPaintings(gallery) {
     if (!gallery) return;
 
-    async function fetchPaintings() {
-      const url = `https://comp4513-a1-orlando-ormon.onrender.com/api/paintings/galleries/${gallery.galleryId}`;
-      console.log("Fetching paintings from:", url);
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setPaintings(data);
-      } catch (error) {
-        console.error("Error fetching paintings:", error);
-      }
-    }
-
-    fetchPaintings();
+    setPaintings(await fetchApi(`paintings/galleries/${gallery.galleryId}`));
   }
 
   useEffect(() => {
@@ -35,19 +22,8 @@ const GalleryView = (props) => {
 
   useEffect(() => {
     async function fetchGalleries() {
-      const url =
-        "https://comp4513-a1-orlando-ormon.onrender.com/api/galleries";
-      console.log("Fetching galleries from:", url);
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setGalleryList(data);
-      } catch (error) {
-        console.error("Error fetching galleries:", error);
-      }
+      setGalleryList(await fetchApi("galleries"));
     }
-
     fetchGalleries();
   }, []);
 
@@ -59,8 +35,8 @@ const GalleryView = (props) => {
   }, [galleryList]);
 
   return (
-    <div className="w-full h-full">
-      <Header redirect={props.redirect} />
+    <div className="w-full h-full overflow-auto max-h-100">
+      <Header redirect={redirect} />
       <div className="contentContainer flex flex-row">
         {galleryList.length > 0 && (
           <GalleryList
@@ -72,13 +48,12 @@ const GalleryView = (props) => {
         {selectedGallery && (
           <GalleryInfo
             selectedGallery={selectedGallery}
-            addToFavourites={props.addToFavourites}
+            addToFavourites={addToFavourites}
           />
         )}
         {paintingList.length > 0 && (
-          <PaintingsTable
-            selectedGallery={selectedGallery}
-            addToFavourites={props.addToFavourites}
+          <GalleryPaintingsTable
+            selectedOption={selectedGallery}
             paintingList={paintingList}
           />
         )}

@@ -1,17 +1,16 @@
-const GalleryList = (props) => {
+const GenreList = (props) => {
   return (
     <div className="content galleryList w-1/5" id="galleryList">
-      {props.galleryList.map((g) => {
+      {props.genreList.map((g) => {
         return (
           <div
-            key={g.galleryId}
+            key={g.genreId}
             className="galleryItem"
             onClick={() => {
-              props.setGallery(g);
-              props.displayPaintings(props.selectedGallery);
+              props.setGenre(g);
             }}
           >
-            {g.galleryName}
+            {g.genreName}
           </div>
         );
       })}
@@ -19,4 +18,4 @@ const GalleryList = (props) => {
   );
 };
 
-export default GalleryList;
+export default GenreList;
