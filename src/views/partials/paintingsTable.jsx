@@ -41,7 +41,7 @@ const PaintingsTable = ({ selectedGallery, paintingList }) => {
   };
 
   return (
-    <div className="border border-gray-300 p-4 m-4 rounded-lg shadow-md">
+    <div className="content galleryPaintings border border-gray-300 p-4 m-4 rounded-lg shadow-md">
       <table className="min-w-full table-auto border-collapse">
         <thead>
           <tr className="bg-gray-100">

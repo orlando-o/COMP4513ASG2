@@ -69,23 +69,19 @@ const GalleryView = (props) => {
             galleryList={galleryList}
           />
         )}
-        <div className="content galleryInfo w-2/5" id="galleryInfo">
-          {selectedGallery && (
-            <GalleryInfo
-              selectedGallery={selectedGallery}
-              addToFavourites={props.addToFavourites}
-            />
-          )}
-        </div>
-        <div className="content galleryPaintings w-2/5">
-          {paintingList.length > 0 && (
-            <PaintingsTable
-              selectedGallery={selectedGallery}
-              addToFavourites={props.addToFavourites}
-              paintingList={paintingList}
-            />
-          )}
-        </div>
+        {selectedGallery && (
+          <GalleryInfo
+            selectedGallery={selectedGallery}
+            addToFavourites={props.addToFavourites}
+          />
+        )}
+        {paintingList.length > 0 && (
+          <PaintingsTable
+            selectedGallery={selectedGallery}
+            addToFavourites={props.addToFavourites}
+            paintingList={paintingList}
+          />
+        )}
       </div>
     </div>
   );

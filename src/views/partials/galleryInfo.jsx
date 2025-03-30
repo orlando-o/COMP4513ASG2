@@ -7,7 +7,10 @@ const GalleryInfo = (props) => {
   }
   return (
     // TODO Add map view
-    <div className="border border-gray-300 p-4 m-4 rounded-lg shadow-md">
+    <div
+      className="content galleryInfo w-2/5 border border-gray-300 p-4 m-4 rounded-lg shadow-md"
+      id="galleryInfo"
+    >
       <h2 className="text-xl font-semibold">
         {props.selectedGallery.galleryName}
       </h2>
