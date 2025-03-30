@@ -3,23 +3,23 @@ const NavBar = (props) => {
     props.redirect(e.target.id);
   };
   return (
-    <div class="navContainer">
-      <button class="navItem" id="artist" onClick={handleClick}>
+    <div className="navContainer">
+      <button className="navItem" id="artist" onClick={handleClick}>
         Artists
       </button>
-      <button class="navItem" id="painting" onClick={handleClick}>
+      <button className="navItem" id="painting" onClick={handleClick}>
         Paintings
       </button>
-      <button class="navItem" id="gallery" onClick={handleClick}>
+      <button className="navItem" id="gallery" onClick={handleClick}>
         Galleries
       </button>
-      <button class="navItem" id="genre" onClick={handleClick}>
+      <button className="navItem" id="genre" onClick={handleClick}>
         Genres
       </button>
-      <button class="navItem" onClick={handleClick}>
+      <button className="navItem" onClick={handleClick}>
         Favourites
       </button>
-      <button class="navItem" onClick={handleClick}>
+      <button className="navItem" onClick={handleClick}>
         About
       </button>
     </div>

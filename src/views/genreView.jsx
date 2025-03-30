@@ -4,11 +4,11 @@ const GenreView = (props) => {
   return (
     <div>
       <Header redirect={props.redirect} />
-      <div class="contentContainer">
-        <div class="genreList"></div>
+      <div className="contentContainer">
+        <div className="genreList"></div>
         <div>
-          <div class="genreInfo"></div>
-          <div class="genrePaintings"></div>
+          <div className="genreInfo"></div>
+          <div className="genrePaintings"></div>
         </div>
       </div>
     </div>

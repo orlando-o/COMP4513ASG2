@@ -4,9 +4,9 @@ const PaintingView = (props) => {
   return (
     <div>
       <Header redirect={props.redirect} />
-      <div class="contentContainer">
-        <div class="paintingFilters"></div>
-        <div class="matchingPaintings"></div>
+      <div className="contentContainer">
+        <div className="paintingFilters"></div>
+        <div className="matchingPaintings"></div>
       </div>
     </div>
   );

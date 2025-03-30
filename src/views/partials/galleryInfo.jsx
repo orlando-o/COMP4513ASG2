@@ -37,7 +37,6 @@ const GalleryInfo = (props) => {
         className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         onClick={() => {
           props.addToFavourites(props.selectedGallery);
-          props.displayPaintings(props.selectedGallery);
         }}
       >
         Add To Favourites

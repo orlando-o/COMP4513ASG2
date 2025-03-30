@@ -4,14 +4,14 @@ const ArtistView = (props) => {
   return (
     <div>
       <Header redirect={props.redirect} />
-      <div class="contentContainer">
-        <div class="content artistList">
-          <div class="artistItem"></div>
+      <div className="contentContainer">
+        <div className="content artistList">
+          <div className="artistItem"></div>
         </div>
-        <div class="content artistInfo">
+        <div className="content artistInfo">
           <div></div>
         </div>
-        <div class="content artistPaintings"></div>
+        <div className="content artistPaintings"></div>
       </div>
     </div>
   );

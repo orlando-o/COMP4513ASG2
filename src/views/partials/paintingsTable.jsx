@@ -1,32 +1,40 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const PaintingsTable = (props) => {
+const PaintingsTable = ({ selectedGallery, paintingList }) => {
   const [sortOrder, setSortOrder] = useState("artist");
-  const [selectedPainting, setSelectedPainting] = useState([]);
-  if (props.selectedGallery) {
+  const [sortedPaintings, setSortedPaintings] = useState([]);
+  const [selectedPainting, setSelectedPainting] = useState(null);
+
+  useEffect(() => {
+    if (paintingList && paintingList.length > 0) {
+      const sortedList = [...paintingList].sort((a, b) => {
+        switch (sortOrder) {
+          case "artist":
+            return `${a.artists?.lastName || ""} ${
+              a.artists?.firstName || ""
+            }`.localeCompare(
+              `${b.artists?.lastName || ""} ${b.artists?.firstName || ""}`
+            );
+          case "title":
+            return a.title.localeCompare(b.title);
+          case "year":
+            return a.yearOfWork - b.yearOfWork;
+          default:
+            return 0;
+        }
+      });
+      setSortedPaintings(sortedList);
+    }
+  }, [paintingList, sortOrder]);
+
+  if (!selectedGallery) {
     return null;
   }
-  const sortPaintingList = (sortOrder) => {
-    return props.paintingList.sort((a, b) => {
-      switch (sortOrder) {
-        case "artist":
-          return `${a.artists.lastName} ${a.artists.firstName}`.localeCompare(
-            `${b.artists.lastName} ${b.artists.firstName}`
-          );
-        case "title":
-          return a.title.localeCompare(b.title);
-        case "year":
-          return a.yearOfWork - b.yearOfWork;
-        default:
-          return 0;
-      }
-    });
-  };
 
-  const handlePaintingClick = (painting) => {
-    setSelectedPainting(painting);
-  };
+  if (!paintingList || paintingList.length === 0) {
+    return <p>No paintings available</p>;
+  }
 
   const handleSortChange = (newSortOrder) => {
     setSortOrder(newSortOrder);
@@ -41,19 +49,19 @@ const PaintingsTable = (props) => {
               Thumbnail
             </th>
             <th
-              className="px-4 py-2 text-left text-sm font-semibold text-gray-700"
+              className="px-4 py-2 text-left text-sm font-semibold text-gray-700 cursor-pointer"
               onClick={() => handleSortChange("artist")}
             >
               Artist
             </th>
             <th
-              className="px-4 py-2 text-left text-sm font-semibold text-gray-700"
+              className="px-4 py-2 text-left text-sm font-semibold text-gray-700 cursor-pointer"
               onClick={() => handleSortChange("title")}
             >
               Title
             </th>
             <th
-              className="px-4 py-2 text-left text-sm font-semibold text-gray-700"
+              className="px-4 py-2 text-left text-sm font-semibold text-gray-700 cursor-pointer"
               onClick={() => handleSortChange("year")}
             >
               Year
@@ -61,15 +69,15 @@ const PaintingsTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {sortPaintingList(sortOrder).map((painting) => (
+          {sortedPaintings.map((painting) => (
             <tr
               key={painting.paintingId}
-              onClick={() => handlePaintingClick(painting)}
+              onClick={() => setSelectedPainting(painting)}
               className="hover:bg-gray-50 cursor-pointer"
             >
               <td className="px-4 py-2">
                 <img
-                  src={`http://res.cloudinary.com/funwebdev/image/upload/w_250/art/props.paintingList/${painting.imageFileName}.jpg`}
+                  src={`https://res.cloudinary.com/funwebdev/image/upload/w_250/art/paintings/${painting.imageFileName}.jpg`}
                   alt={painting.title}
                   className="rounded"
                   width={50}
@@ -77,7 +85,9 @@ const PaintingsTable = (props) => {
                 />
               </td>
               <td className="px-4 py-2 text-sm text-gray-700">
-                {`${painting.artists.firstName} ${painting.artists.lastName}`}
+                {painting.artists
+                  ? `${painting.artists.firstName} ${painting.artists.lastName}`
+                  : "Unknown Artist"}
               </td>
               <td className="px-4 py-2 text-sm text-gray-700">
                 {painting.title}
