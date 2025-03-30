@@ -4,24 +4,24 @@ const NavBar = (props) => {
   };
   return (
     <div class="navContainer">
-      <div class="navItem" id="artist" onClick={handleClick}>
+      <button class="navItem" id="artist" onClick={handleClick}>
         Artists
-      </div>
-      <div class="navItem" id="painting" onClick={handleClick}>
+      </button>
+      <button class="navItem" id="painting" onClick={handleClick}>
         Paintings
-      </div>
-      <div class="navItem" id="gallery" onClick={handleClick}>
+      </button>
+      <button class="navItem" id="gallery" onClick={handleClick}>
         Galleries
-      </div>
-      <div class="navItem" id="genre" onClick={handleClick}>
+      </button>
+      <button class="navItem" id="genre" onClick={handleClick}>
         Genres
-      </div>
-      <div class="navItem" onClick={handleClick}>
+      </button>
+      <button class="navItem" onClick={handleClick}>
         Favourites
-      </div>
-      <div class="navItem" onClick={handleClick}>
+      </button>
+      <button class="navItem" onClick={handleClick}>
         About
-      </div>
+      </button>
     </div>
   );
 };
