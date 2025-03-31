@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 
-const GalleryPaintingsTable = ({ selectedOption, paintingList }) => {
+const PaintingsTable = ({ selectedOption, paintingList }) => {
   const [sortOrder, setSortOrder] = useState("artist");
   const [sortedPaintings, setSortedPaintings] = useState([]);
   const [selectedPainting, setSelectedPainting] = useState(null);
@@ -197,4 +197,4 @@ const GenrePaintingsTable = ({ selectedGenre, paintingList }) => {
   );
 };
 
-export { GalleryPaintingsTable, GenrePaintingsTable };
+export { PaintingsTable, GenrePaintingsTable };

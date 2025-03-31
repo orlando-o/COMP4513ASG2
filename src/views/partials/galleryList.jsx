@@ -1,6 +1,6 @@
 const GalleryList = (props) => {
   return (
-    <div className="content galleryList w-1/5" id="galleryList">
+    <div className="content galleryList min-w-fit" id="galleryList">
       {props.galleryList.map((g) => {
         return (
           <div

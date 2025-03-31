@@ -2,7 +2,7 @@
 import Header from "./partials/header";
 import { useEffect, useState } from "react";
 import GalleryInfo from "./partials/galleryInfo";
-import { GalleryPaintingsTable } from "./partials/paintingTables";
+import { PaintingsTable } from "./partials/paintingTables";
 import GalleryList from "./partials/galleryList";
 
 const GalleryView = ({ redirect, addToFavourites, fetchApi }) => {
@@ -52,7 +52,7 @@ const GalleryView = ({ redirect, addToFavourites, fetchApi }) => {
           />
         )}
         {paintingList.length > 0 && (
-          <GalleryPaintingsTable
+          <PaintingsTable
             selectedOption={selectedGallery}
             paintingList={paintingList}
           />

@@ -1,11 +1,11 @@
 const GenreList = (props) => {
   return (
-    <div className="content galleryList w-1/5" id="galleryList">
+    <div className="content genreList min-w-fit" id="genreList">
       {props.genreList.map((g) => {
         return (
           <div
             key={g.genreId}
-            className="galleryItem"
+            className="genreItem"
             onClick={() => {
               props.setGenre(g);
             }}

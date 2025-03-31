@@ -1,17 +1,54 @@
 import Header from "./partials/header";
+import { useState, useEffect } from "react";
+import { PaintingsTable } from "./partials/paintingTables";
+import ArtistList from "./partials/artistList";
+import ArtistInfo from "./partials/artistInfo";
 
-const ArtistView = (props) => {
+const ArtistView = ({ redirect, addToFavourites, fetchApi }) => {
+  const [artistList, setArtistList] = useState([]);
+  const [selectedArtist, setArtist] = useState(null);
+  const [paintingList, setPaintings] = useState([]);
+
+  async function displayPaintings(artist) {
+    if (!artist) return;
+
+    setPaintings(await fetchApi(`paintings/artist/${artist.artistId}`));
+  }
+
+  useEffect(() => {
+    displayPaintings(selectedArtist);
+  }, [selectedArtist]);
+
+  useEffect(() => {
+    async function fetchArtists() {
+      setArtistList(await fetchApi("artists"));
+    }
+    fetchArtists();
+  }, []);
+
+  useEffect(() => {
+    if (artistList.length > 0) {
+      setArtist(artistList[0]);
+      displayPaintings(artistList[0]);
+    }
+  }, [artistList]);
   return (
-    <div>
-      <Header redirect={props.redirect} />
-      <div className="contentContainer">
-        <div className="content artistList">
-          <div className="artistItem"></div>
-        </div>
-        <div className="content artistInfo">
-          <div></div>
-        </div>
-        <div className="content artistPaintings"></div>
+    <div className="w-full h-full overflow-auto max-h-100">
+      <Header redirect={redirect} />
+      <div className="contentContainer flex flex-row">
+        <ArtistList
+          setArtist={setArtist}
+          displayPaintings={displayPaintings}
+          artistList={artistList}
+        />
+        <ArtistInfo
+          selectedArtist={selectedArtist}
+          addToFavourites={addToFavourites}
+        />
+        <PaintingsTable
+          selectedOption={selectedArtist}
+          paintingList={paintingList}
+        />
       </div>
     </div>
   );

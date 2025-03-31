@@ -69,7 +69,16 @@ function App() {
             />
           }
         />
-        <Route path="artist" element={<ArtistView redirect={redirect} />} />
+        <Route
+          path="artist"
+          element={
+            <ArtistView
+              redirect={redirect}
+              addToFavourites={addToFavourites}
+              fetchApi={fetchApi}
+            />
+          }
+        />
         <Route
           path="genre"
           element={
