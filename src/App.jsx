@@ -89,7 +89,16 @@ function App() {
             />
           }
         />
-        <Route path="painting" element={<PaintingView redirect={redirect} />} />
+        <Route
+          path="painting"
+          element={
+            <PaintingView
+              redirect={redirect}
+              addToFavourites={addToFavourites}
+              fetchApi={fetchApi}
+            />
+          }
+        />
       </Routes>
     </main>
   );
