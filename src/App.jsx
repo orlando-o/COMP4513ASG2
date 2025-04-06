@@ -6,6 +6,7 @@ import GenreView from "./views/genreView";
 import PaintingView from "./views/paintingView";
 import ArtistView from "./views/artistView";
 import FavoritesModal from "./views/partials/modals/favouritesModal";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   const navigate = useNavigate(); // https://www.geeksforgeeks.org/reactjs-usenavigate-hook/
@@ -45,6 +46,7 @@ function App() {
     setFavouritePaintings([]);
   }
   function addToFavourites(item) {
+    let itemAdded = false;
     if (item.galleryId) {
       if (
         !favouriteGalleries.some(
@@ -52,12 +54,14 @@ function App() {
         )
       ) {
         setFavouriteGalleries([...favouriteGalleries, item]);
+        itemAdded = true;
       }
     } else if (item.artistId) {
       if (
         !favouriteArtists.some((artist) => artist.artistId === item.artistId)
       ) {
         setFavouriteArtists([...favouriteArtists, item]);
+        itemAdded = true;
       }
     } else if (item.paintingId) {
       if (
@@ -66,7 +70,13 @@ function App() {
         )
       ) {
         setFavouritePaintings([...favouritePaintings, item]);
+        itemAdded = true;
       }
+    }
+    if (itemAdded) {
+      toast("Added to Favourites!", { type: "success" }); // https://fkhadra.github.io/react-toastify/api/toast
+    } else if (!itemAdded) {
+      toast("Item already in favourites.", { type: "error" }); // https://fkhadra.github.io/react-toastify/api/toast
     }
   }
   function redirect(target) {
@@ -106,6 +116,14 @@ function App() {
 
   return (
     <main>
+      <div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          theme="light"
+        />
+        {/* https://github.com/fkhadra/react-toastify/tree/main */}
+      </div>
       <div
         className={`fixed inset-0 z-50 flex items-center justify-center bg-gray-500/30 ${
           showFavourites ? "" : "hidden"
