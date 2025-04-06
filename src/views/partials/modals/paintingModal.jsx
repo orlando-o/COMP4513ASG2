@@ -15,7 +15,6 @@ const PaintingModal = ({ addToFavourites, painting, showModalView }) => {
           colourObj.name,
         ]) || [];
       setDominantColours(colours);
-      console.log(colours);
     } catch (error) {
       console.error("Failed to parse dominant colours:", error);
       setDominantColours([]);

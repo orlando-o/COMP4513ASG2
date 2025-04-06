@@ -17,7 +17,7 @@ const ArtistList = ({ artistList, setArtist }) => {
               className="cursor-pointer hover:bg-gray-50 transition"
               onClick={() => setArtist(a)}
             >
-              <td className="px-4 py-2 border-b">{`${a.firstName} ${a.lastName}`}</td>
+              <td className="px-4 py-2 border-b">{`${a.lastName}, ${a.firstName}`}</td>
             </tr>
           ))}
         </tbody>

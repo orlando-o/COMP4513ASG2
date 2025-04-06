@@ -27,7 +27,11 @@ const ArtistView = ({
 
   useEffect(() => {
     async function fetchArtists() {
-      setArtistList(await fetchApi("artists"));
+      const artists = await fetchApi("artists");
+      const sortedArtists = artists.sort((a, b) => {
+        return a.lastName.localeCompare(b.lastName);
+      });
+      setArtistList(sortedArtists);
     }
     fetchArtists();
   }, []);

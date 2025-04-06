@@ -17,6 +17,25 @@ const PaintingFilters = ({ setFilters, getStoredResponse, fetchApi }) => {
     if (!genres.length) fetchApi("genres").then(setGenres);
   }, []);
 
+  useEffect(() => {
+    if (!artists.length || !genres.length || !galleries.length) return;
+    setArtists(
+      artists.sort((a, b) => {
+        return a.lastName.localeCompare(b.lastName);
+      })
+    );
+    setGenres(
+      genres.sort((a, b) => {
+        return a.genreName.localeCompare(b.genreName);
+      })
+    );
+    setGalleries(
+      galleries.sort((a, b) => {
+        return a.galleryName.localeCompare(b.galleryName);
+      })
+    );
+  }, [artists, genres, galleries]);
+
   const handleFilterTypeChange = (type) => {
     setFilterType(type);
     setFilterContent("");
@@ -99,7 +118,7 @@ const PaintingFilters = ({ setFilters, getStoredResponse, fetchApi }) => {
             <option value="">Select</option>
             {artists.map((a, i) => (
               <option key={i} value={a.artistId}>
-                {a.firstName} {a.lastName}
+                {a.lastName}, {a.firstName}
               </option>
             ))}
           </select>

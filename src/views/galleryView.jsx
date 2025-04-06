@@ -28,7 +28,11 @@ const GalleryView = ({
 
   useEffect(() => {
     async function fetchGalleries() {
-      setGalleryList(await fetchApi("galleries"));
+      const galleries = await fetchApi("galleries");
+      const sortedGalleries = galleries.sort((a, b) => {
+        return a.galleryName.localeCompare(b.galleryName);
+      });
+      setGalleryList(sortedGalleries);
     }
     fetchGalleries();
   }, []);

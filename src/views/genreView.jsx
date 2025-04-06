@@ -22,9 +22,12 @@ const GenreView = ({
 
   useEffect(() => {
     async function fetchGenres() {
-      setGenreList(await fetchApi("genres"));
+      const genres = await fetchApi("genres");
+      const sortedGenres = genres.sort((a, b) => {
+        return a.genreName.localeCompare(b.genreName);
+      });
+      setGenreList(sortedGenres);
     }
-
     fetchGenres();
   }, []);
 
