@@ -8,7 +8,7 @@ const Header = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
     <div className="header flex flex-row justify-between fixed top-2 right-2 left-2 z-2">
       <div className="icon"></div>
       <div className="pageTitle">
-        Art Dashboard Project {formatString(window.location.pathname)} View
+        PaintingsPlus: {formatString(window.location.pathname)}
       </div>
       <NavBar
         redirect={redirect}
