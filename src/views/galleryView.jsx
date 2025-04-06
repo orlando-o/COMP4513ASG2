@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import GalleryInfo from "./partials/galleryInfo";
 import PaintingsTable from "./partials/paintingTables";
 import GalleryList from "./partials/galleryList";
+import "ldrs/bouncy";
 
 const GalleryView = ({
   redirect,
@@ -15,6 +16,7 @@ const GalleryView = ({
   const [galleryList, setGalleryList] = useState([]);
   const [selectedGallery, setGallery] = useState(null);
   const [paintingList, setPaintings] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function displayPaintings(gallery) {
     if (!gallery) return;
@@ -41,6 +43,7 @@ const GalleryView = ({
     if (galleryList.length > 0) {
       setGallery(galleryList[0]);
       displayPaintings(galleryList[0]);
+      setLoading(false);
     }
   }, [galleryList]);
 
@@ -52,6 +55,12 @@ const GalleryView = ({
         favouritesEmpty={favouritesEmpty}
       />
       <div className="contentContainer flex flex-row">
+        {loading && (
+          <div className="flex justify-center items-center h-100 w-full">
+            <l-Bouncy size="60" color="black" />{" "}
+            {/* https://uiball.com/ldrs/ */}
+          </div>
+        )}
         {galleryList.length > 0 && (
           <GalleryList
             setGallery={setGallery}

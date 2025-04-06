@@ -3,6 +3,7 @@ import GenreList from "./partials/genreList";
 import GenreInfo from "./partials/genreInfo";
 import PaintingsTable from "./partials/paintingTables";
 import { useState, useEffect } from "react";
+import "ldrs/bouncy";
 
 const GenreView = ({
   redirect,
@@ -14,6 +15,7 @@ const GenreView = ({
   const [genreList, setGenreList] = useState([]);
   const [selectedGenre, setGenre] = useState(null);
   const [paintingList, setPaintings] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function displayPaintings(genre) {
     if (!genre) return;
@@ -39,6 +41,7 @@ const GenreView = ({
     if (genreList.length > 0) {
       setGenre(genreList[0]);
       displayPaintings(genreList[0]);
+      setLoading(false);
     }
   }, [genreList]);
 
@@ -50,6 +53,12 @@ const GenreView = ({
         favouritesEmpty={favouritesEmpty}
       />
       <div className="contentContainer flex flex-row">
+        {loading && (
+          <div className="flex justify-center items-center h-100 w-full">
+            <l-Bouncy size="60" color="black" />{" "}
+            {/* https://uiball.com/ldrs/ */}
+          </div>
+        )}
         {genreList.length > 0 && (
           <GenreList
             setGenre={setGenre}

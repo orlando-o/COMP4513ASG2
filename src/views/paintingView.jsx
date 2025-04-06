@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./partials/header";
 import PaintingsTable from "./partials/paintingTables";
 import PaintingFilters from "./partials/paintingFilters";
+import "ldrs/bouncy";
 
 const PaintingView = ({
   redirect,
@@ -12,8 +13,10 @@ const PaintingView = ({
   openFavouritesModal,
   favouritesEmpty,
 }) => {
-  const [paintingList, setPaintings] = useState([]); // reset via getStoredResponse(endpoint)
+  const [paintingList, setPaintings] = useState([]);
   const [selectedFilter, setFilters] = useState([]); // ex ["year", "2017/2024"]
+  const [loading, setLoading] = useState(true);
+
   const endpoint = "paintings";
   useEffect(() => {
     async function fetchPaintings() {
@@ -22,6 +25,12 @@ const PaintingView = ({
     }
     fetchPaintings(); // TODO setPaintings(getStoredResponse(endpoint)); if (!paintingList) {fetchPaintings()};
   }, []);
+
+  useEffect(() => {
+    if (paintingList.length > 0) {
+      setLoading(false);
+    }
+  }, [paintingList]);
 
   useEffect(() => {
     filterPaintings();
@@ -71,10 +80,18 @@ const PaintingView = ({
           getStoredResponse={getStoredResponse}
           fetchApi={fetchApi}
         />
-        <PaintingsTable
-          paintingList={paintingList}
-          addToFavourites={addToFavourites}
-        />
+        {loading && (
+          <div className="flex justify-center items-center h-100 w-full">
+            <l-Bouncy size="60" color="black" />{" "}
+            {/* https://uiball.com/ldrs/ */}
+          </div>
+        )}
+        {paintingList.length > 0 && (
+          <PaintingsTable
+            paintingList={paintingList}
+            addToFavourites={addToFavourites}
+          />
+        )}
       </div>
     </div>
   );

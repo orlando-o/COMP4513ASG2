@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginPage from "./views/loginPage";
 import GalleryView from "./views/galleryView";
 import GenreView from "./views/genreView";
@@ -33,7 +33,6 @@ function App() {
       setFavouritePaintings(favouritePaintings.filter((fav) => fav !== item));
     }
   }
-
   function closeFavouritesModal() {
     setFavouritesModal(false);
   }
@@ -79,7 +78,6 @@ function App() {
       const url =
         "https://comp4513-a1-orlando-ormon.onrender.com/api/" + endpoint;
       console.log("Fetching from:", url);
-
       try {
         const response = await fetch(url);
         const data = await response.json();
@@ -96,10 +94,15 @@ function App() {
   function storeResponse(resp, endpoint) {
     localStorage.setItem(endpoint, resp); // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
   }
-
   function getStoredResponse(endpoint) {
     return JSON.parse(localStorage.getItem(endpoint)); // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage && https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
   }
+
+  useEffect(() => {
+    async () => {
+      await fetchApi("");
+    };
+  }, []); // waking up the api because it has a wait time of like 50 seconds on startup, just incase user is browsing content that is stored in localStorage and wants to get new information later
 
   return (
     <main>
