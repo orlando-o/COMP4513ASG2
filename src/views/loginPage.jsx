@@ -13,8 +13,8 @@ const LoginPage = (props) => {
           Orlando Ormon, 2024-05, 200 ISO
         </figcaption>
       </figure>
-      <h1 className="place-self-center font-bold text-4xl">
-        ASG2 Replace with Name Eventually
+      <h1 className="place-self-center font-bold text-5xl text-white">
+        PaintingsPlus
       </h1>
       <div className="fixed inset-0 flex items-center justify-center bg-gray-500/30">
         <LoginForm redirect={props.redirect} />
