@@ -23,11 +23,19 @@ const ArtistInfo = (props) => {
           href={props.selectedArtist.wikiLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-700"
+          className="text-gray-500 hover:text-gray-700"
         >
           Learn More on Wikipedia
         </a>
       </p>
+      <button
+        className="mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
+        onClick={() => {
+          props.addToFavourites(props.selectedArtist);
+        }}
+      >
+        Add To Favourites
+      </button>
     </div>
   );
 };

@@ -1,17 +1,23 @@
 import Header from "./partials/header";
 import GenreList from "./partials/genreList";
 import GenreInfo from "./partials/genreInfo";
-import { GenrePaintingsTable } from "./partials/paintingTables";
+import PaintingsTable from "./partials/paintingTables";
 import { useState, useEffect } from "react";
 
-const GenreView = ({ redirect, addToFavourites, fetchApi }) => {
+const GenreView = ({
+  redirect,
+  addToFavourites,
+  fetchApi,
+  openFavouritesModal,
+  favouritesEmpty,
+}) => {
   const [genreList, setGenreList] = useState([]);
   const [selectedGenre, setGenre] = useState(null);
   const [paintingList, setPaintings] = useState([]);
 
   async function displayPaintings(genre) {
     if (!genre) return;
-    setPaintings(await fetchApi(`paintings/genre/` + genre.genreId));
+    setPaintings(await fetchApi("paintings/genre/" + genre.genreId));
   }
 
   useEffect(() => {
@@ -34,23 +40,34 @@ const GenreView = ({ redirect, addToFavourites, fetchApi }) => {
   }, [genreList]);
 
   return (
-    <div className="w-full h-full overflow-auto max-h-100">
-      <Header redirect={redirect} />
+    <div>
+      <Header
+        redirect={redirect}
+        openFavouritesModal={openFavouritesModal}
+        favouritesEmpty={favouritesEmpty}
+      />
       <div className="contentContainer flex flex-row">
-        <GenreList
-          setGenre={setGenre}
-          genreList={genreList}
-          displayPaintings={displayPaintings}
-        />
+        {genreList.length > 0 && (
+          <GenreList
+            setGenre={setGenre}
+            genreList={genreList}
+            displayPaintings={displayPaintings}
+          />
+        )}
         <div>
-          <GenreInfo
-            addToFavourites={addToFavourites}
-            selectedGenre={selectedGenre}
-          />
-          <GenrePaintingsTable
-            selectedGenre={selectedGenre}
-            paintingList={paintingList}
-          />
+          {selectedGenre && (
+            <GenreInfo
+              addToFavourites={addToFavourites}
+              selectedGenre={selectedGenre}
+            />
+          )}
+          {paintingList.length > 0 && (
+            <PaintingsTable
+              selectedOption={selectedGenre}
+              paintingList={paintingList}
+              addToFavourites={addToFavourites}
+            />
+          )}
         </div>
       </div>
     </div>

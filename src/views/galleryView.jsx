@@ -2,10 +2,16 @@
 import Header from "./partials/header";
 import { useEffect, useState } from "react";
 import GalleryInfo from "./partials/galleryInfo";
-import { PaintingsTable } from "./partials/paintingTables";
+import PaintingsTable from "./partials/paintingTables";
 import GalleryList from "./partials/galleryList";
 
-const GalleryView = ({ redirect, addToFavourites, fetchApi }) => {
+const GalleryView = ({
+  redirect,
+  addToFavourites,
+  fetchApi,
+  openFavouritesModal,
+  favouritesEmpty,
+}) => {
   const [galleryList, setGalleryList] = useState([]);
   const [selectedGallery, setGallery] = useState(null);
   const [paintingList, setPaintings] = useState([]);
@@ -35,8 +41,12 @@ const GalleryView = ({ redirect, addToFavourites, fetchApi }) => {
   }, [galleryList]);
 
   return (
-    <div className="w-full h-full overflow-auto max-h-100">
-      <Header redirect={redirect} />
+    <div>
+      <Header
+        redirect={redirect}
+        openFavouritesModal={openFavouritesModal}
+        favouritesEmpty={favouritesEmpty}
+      />
       <div className="contentContainer flex flex-row">
         {galleryList.length > 0 && (
           <GalleryList
@@ -55,6 +65,7 @@ const GalleryView = ({ redirect, addToFavourites, fetchApi }) => {
           <PaintingsTable
             selectedOption={selectedGallery}
             paintingList={paintingList}
+            addToFavourites={addToFavourites}
           />
         )}
       </div>

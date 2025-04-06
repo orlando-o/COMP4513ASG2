@@ -1,42 +1,79 @@
 import { useEffect, useState } from "react";
 import Header from "./partials/header";
-import { PaintingsTable } from "./partials/paintingTables";
+import PaintingsTable from "./partials/paintingTables";
+import PaintingFilters from "./partials/paintingFilters";
 
-const PaintingView = ({ redirect, addToFavourites, fetchApi }) => {
-  const [paintingList, setPaintings] = useState([]);
-  const [selectedFilters, setFilters] = useState([]);
-
+const PaintingView = ({
+  redirect,
+  addToFavourites,
+  fetchApi,
+  storeResponse,
+  getStoredResponse,
+  openFavouritesModal,
+  favouritesEmpty,
+}) => {
+  const [paintingList, setPaintings] = useState([]); // reset via getStoredResponse(endpoint)
+  const [selectedFilter, setFilters] = useState([]); // ex ["year", "2017/2024"]
+  const endpoint = "paintings";
   useEffect(() => {
     async function fetchPaintings() {
-      setPaintings(await fetchApi("paintings")); // will cause paintingsTable to re-render because of the dependancy
+      const paintings = await fetchApi(endpoint);
+      setPaintings(paintings); // will cause paintingsTable to re-render because of the dependency
     }
-    fetchPaintings();
+    fetchPaintings(); // TODO setPaintings(getStoredResponse(endpoint)); if (!paintingList) {fetchPaintings()};
   }, []);
 
   useEffect(() => {
     filterPaintings();
-  }, [selectedFilters]);
+  }, [selectedFilter]);
 
-  function filterPaintings() {
-    const filteredPaintings = paintingList.filter(); //implement filtering logic here
-    // /api/paintings	Returns all paintings
-    // /api/paintings/sort/titleORyear	Returns all paintings, sorted by either title or yearOfWork
-    // /api/paintings/ref	Returns the specified painting
-    // /api/paintings/search/substring	Returns paintings whose title contains the provided substring
-    // /api/paintings/years/start/end	Returns paintings between two years, ordered by yearOfWork
-    // /api/paintings/galleries/ref	Returns all paintings in a given gallery
-    // /api/paintings/artist/ref	Returns all paintings by a given artist
-    return filteredPaintings;
+  async function filterPaintings() {
+    switch (selectedFilter[0]) {
+      case "year":
+        setPaintings(await fetchApi("paintings/years/" + selectedFilter[1]));
+        break;
+
+      case "artist":
+        console.log(selectedFilter[1]);
+        setPaintings(await fetchApi("paintings/artist/" + selectedFilter[1]));
+        break;
+
+      case "gallery":
+        setPaintings(
+          await fetchApi("paintings/galleries/" + selectedFilter[1])
+        );
+        break;
+
+      case "title":
+        setPaintings(await fetchApi("paintings/search/" + selectedFilter[1]));
+        break;
+
+      case "genre":
+        setPaintings(await fetchApi("paintings/genre/" + selectedFilter[1]));
+        break;
+
+      default:
+        setPaintings(await fetchApi(endpoint));
+        break;
+    }
   }
 
   return (
     <div>
-      <Header redirect={redirect} />
-      <div className="contentContainer">
-        <PaintingFilters setFilters={setFilters} />
+      <Header
+        redirect={redirect}
+        openFavouritesModal={openFavouritesModal}
+        favouritesEmpty={favouritesEmpty}
+      />
+      <div className="contentContainer flex flex-row">
+        <PaintingFilters
+          setFilters={setFilters}
+          getStoredResponse={getStoredResponse}
+          fetchApi={fetchApi}
+        />
         <PaintingsTable
-          selectedFilters={selectedFilters}
           paintingList={paintingList}
+          addToFavourites={addToFavourites}
         />
       </div>
     </div>

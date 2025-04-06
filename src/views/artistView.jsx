@@ -1,10 +1,16 @@
 import Header from "./partials/header";
 import { useState, useEffect } from "react";
-import { PaintingsTable } from "./partials/paintingTables";
+import PaintingsTable from "./partials/paintingTables";
 import ArtistList from "./partials/artistList";
 import ArtistInfo from "./partials/artistInfo";
 
-const ArtistView = ({ redirect, addToFavourites, fetchApi }) => {
+const ArtistView = ({
+  redirect,
+  addToFavourites,
+  fetchApi,
+  openFavouritesModal,
+  favouritesEmpty,
+}) => {
   const [artistList, setArtistList] = useState([]);
   const [selectedArtist, setArtist] = useState(null);
   const [paintingList, setPaintings] = useState([]);
@@ -33,8 +39,12 @@ const ArtistView = ({ redirect, addToFavourites, fetchApi }) => {
     }
   }, [artistList]);
   return (
-    <div className="w-full h-full overflow-auto max-h-100">
-      <Header redirect={redirect} />
+    <div>
+      <Header
+        redirect={redirect}
+        openFavouritesModal={openFavouritesModal}
+        favouritesEmpty={favouritesEmpty}
+      />
       <div className="contentContainer flex flex-row">
         <ArtistList
           setArtist={setArtist}
@@ -48,6 +58,7 @@ const ArtistView = ({ redirect, addToFavourites, fetchApi }) => {
         <PaintingsTable
           selectedOption={selectedArtist}
           paintingList={paintingList}
+          addToFavourites={addToFavourites}
         />
       </div>
     </div>
