@@ -7,7 +7,7 @@ const Header = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
   return (
     <div className="header flex flex-row justify-between fixed top-2 right-2 left-2 z-2">
       <div className="icon"></div>
-      <div className="pageTitle">
+      <div className="pageTitle text-2xl font-semibold text-green-700">
         PaintingsPlus: {formatString(window.location.pathname)}
       </div>
       <NavBar

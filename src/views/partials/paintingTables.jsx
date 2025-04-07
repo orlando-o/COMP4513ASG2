@@ -65,50 +65,50 @@ const PaintingsTable = ({ paintingList, addToFavourites }) => {
   };
 
   return (
-    <div className="content border border-gray-300 p-4 m-4 rounded-lg shadow-md">
-      <table className="table-auto border-collapse">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="px-4 py-2 text-left text-sm font-semibold text-gray-500">
-              Thumbnail
-            </th>
-            <th
-              className={`px-4 py-2 text-left text-sm ${
-                sortOrder[0] == "artist" ? "text-gray-900" : "text-gray-500"
-              } font-semibold cursor-pointer`}
-              onClick={() => handleSortChange("artist")}
-            >
-              Artist
-            </th>
-            <th
-              className={`px-4 py-2 text-left text-sm ${
-                sortOrder[0] == "title" ? "text-gray-900" : "text-gray-500"
-              } font-semibold cursor-pointer`}
-              onClick={() => handleSortChange("title")}
-            >
-              Title
-            </th>
-            <th
-              className={`px-4 py-2 text-left text-sm ${
-                sortOrder[0] == "year" ? "text-gray-900" : "text-gray-500"
-              } font-semibold cursor-pointer`}
-              onClick={() => handleSortChange("year")}
-            >
-              Year
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedPaintings.map((painting) => (
-            <SinglePainting
-              key={painting.paintingId}
-              painting={painting}
-              addToFavourites={addToFavourites}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <div className="content border border-green-200 bg-white p-6 m-6 rounded-2xl shadow-lg">
+    <table className="table-auto border-collapse w-full">
+      <thead>
+        <tr className="bg-green-50">
+          <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">
+            Thumbnail
+          </th>
+          <th
+            className={`px-4 py-3 text-left text-sm font-semibold cursor-pointer transition-colors duration-200 ${
+              sortOrder[0] === "artist" ? "text-green-700" : "text-gray-500 hover:text-orange-500"
+            }`}
+            onClick={() => handleSortChange("artist")}
+          >
+            Artist
+          </th>
+          <th
+            className={`px-4 py-3 text-left text-sm font-semibold cursor-pointer transition-colors duration-200 ${
+              sortOrder[0] === "title" ? "text-green-700" : "text-gray-500 hover:text-orange-500"
+            }`}
+            onClick={() => handleSortChange("title")}
+          >
+            Title
+          </th>
+          <th
+            className={`px-4 py-3 text-left text-sm font-semibold cursor-pointer transition-colors duration-200 ${
+              sortOrder[0] === "year" ? "text-green-700" : "text-gray-500 hover:text-orange-500"
+            }`}
+            onClick={() => handleSortChange("year")}
+          >
+            Year
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedPaintings.map((painting) => (
+          <SinglePainting
+            key={painting.paintingId}
+            painting={painting}
+            addToFavourites={addToFavourites}
+          />
+        ))}
+      </tbody>
+    </table>
+  </div>
   );
 };
 

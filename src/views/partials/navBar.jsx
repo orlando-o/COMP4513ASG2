@@ -1,56 +1,48 @@
+import { Home, Image, GalleryVerticalEnd, Palette, Star, Info } from "lucide-react";
+
 const NavBar = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
   const handleClick = (e) => {
-    switch (e.target.id) {
+    switch (e.currentTarget.id) {
       case "favouritesNav":
         openFavouritesModal();
         break;
       default:
-        redirect(e.target.id.slice(0, -3));
+        redirect(e.currentTarget.id.slice(0, -3));
         break;
     }
   };
+
+  const navButtonClasses = (disabled = false) =>
+    `navItem flex items-center justify-center w-12 h-12 mx-2 rounded-2xl shadow-md transition-colors duration-200 ${
+      disabled
+        ? "cursor-not-allowed bg-gray-200 text-gray-400"
+        : "bg-green-100 text-green-700 hover:bg-orange-100 hover:text-orange-600"
+    }`;
+
   return (
-    <div className="navContainer">
-      <button
-        className="navItem mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
-        id="artistNav"
-        onClick={handleClick}
-      >
-        Artists
+    <div className="navContainer flex items-center justify-center bg-white p-4 rounded-2xl shadow-lg mb-6">
+      <button className={navButtonClasses()} id="artistNav" onClick={handleClick}>
+        <Palette size={20} />
+      </button>
+      <button className={navButtonClasses()} id="paintingNav" onClick={handleClick}>
+        <Image size={20} />
+      </button>
+      <button className={navButtonClasses()} id="galleryNav" onClick={handleClick}>
+        <GalleryVerticalEnd size={20} />
+      </button>
+      <button className={navButtonClasses()} id="genreNav" onClick={handleClick}>
+        <Home size={20} />
       </button>
       <button
-        className="navItem mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
-        id="paintingNav"
-        onClick={handleClick}
-      >
-        Paintings
-      </button>
-      <button
-        className="navItem mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
-        id="galleryNav"
-        onClick={handleClick}
-      >
-        Galleries
-      </button>
-      <button
-        className="navItem mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
-        id="genreNav"
-        onClick={handleClick}
-      >
-        Genres
-      </button>
-      <button
-        className={`navItem mt-2 px-4 py-2 rounded hover:bg-gray-600 ${
-          favouritesEmpty() ? "cursor-not-allowed bg-gray-200" : "bg-gray-500"
-        }`}
+        className={navButtonClasses(favouritesEmpty())}
         id="favouritesNav"
         onClick={handleClick}
         disabled={favouritesEmpty()}
       >
-        Favourites
+        <Star size={20} />
       </button>
       <button
-        className="navItem mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
+        className="navItem flex items-center justify-center ml-4 px-4 py-2 rounded-2xl shadow-md bg-green-100 text-green-700 hover:bg-orange-100 hover:text-orange-600 transition-colors duration-200"
         onClick={handleClick}
         id="aboutNav"
       >
