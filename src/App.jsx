@@ -7,6 +7,7 @@ import PaintingView from "./views/paintingView";
 import ArtistView from "./views/artistView";
 import FavoritesModal from "./views/partials/modals/favouritesModal";
 import { ToastContainer, toast } from "react-toastify";
+import AboutView from "./views/aboutView";
 
 function App() {
   const navigate = useNavigate(); // https://www.geeksforgeeks.org/reactjs-usenavigate-hook/
@@ -187,6 +188,16 @@ function App() {
               storeResponse={storeResponse}
               favouritesEmpty={favouritesEmpty}
               getStoredResponse={getStoredResponse}
+              openFavouritesModal={openFavouritesModal}
+            />
+          }
+        />
+        <Route
+          path="about"
+          element={
+            <AboutView
+              redirect={redirect}
+              favouritesEmpty={favouritesEmpty}
               openFavouritesModal={openFavouritesModal}
             />
           }

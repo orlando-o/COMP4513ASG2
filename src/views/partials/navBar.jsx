@@ -52,8 +52,8 @@ const NavBar = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
       <button
         className="navItem mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
         onClick={handleClick}
+        id="aboutNav"
       >
-        {/* add id="aboutNav" eventually when we make the about page */}
         About
       </button>
     </div>

@@ -14,16 +14,16 @@ const PaintingView = ({
   favouritesEmpty,
 }) => {
   const [paintingList, setPaintings] = useState([]);
-  const [selectedFilter, setFilters] = useState([]); // ex ["year", "2017/2024"]
+  const [selectedFilter, setFilters] = useState([]); // ["year", "2017/2024"]
   const [loading, setLoading] = useState(true);
 
   const endpoint = "paintings";
   useEffect(() => {
     async function fetchPaintings() {
       const paintings = await fetchApi(endpoint);
-      setPaintings(paintings); // will cause paintingsTable to re-render because of the dependency
+      setPaintings(paintings);
     }
-    fetchPaintings(); // TODO setPaintings(getStoredResponse(endpoint)); if (!paintingList) {fetchPaintings()};
+    fetchPaintings();
   }, []);
 
   useEffect(() => {
