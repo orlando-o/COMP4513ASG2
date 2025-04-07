@@ -43,7 +43,7 @@ const PaintingModal = ({ addToFavourites, painting, showModalView }) => {
       <div className="modalContent flex gap-6 mb-6">
         <div className="border bg-white rounded p-2 flex items-center justify-center w-1/2 min-h-[250px]">
           <img
-            src={`https://res.cloudinary.com/funwebdev/image/upload/w_250/art/paintings/${painting.imageFileName}.jpg`}
+            src={`/images/paintings/full/${painting.imageFileName}.jpg`}
             alt={painting.title}
             className="max-h-50 object-contain"
           />
