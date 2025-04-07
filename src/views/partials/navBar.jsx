@@ -1,4 +1,4 @@
-import { Home, Image, GalleryVerticalEnd, Palette, Star, Info } from "lucide-react";
+import { Home, UserPen, Drama, GalleryVerticalEnd, Palette, Star, Info, Landmark } from "lucide-react";
 
 const NavBar = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
   const handleClick = (e) => {
@@ -22,16 +22,16 @@ const NavBar = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
   return (
     <div className="navContainer flex items-center justify-center bg-white p-4 rounded-2xl shadow-lg mb-6">
       <button className={navButtonClasses()} id="artistNav" onClick={handleClick}>
-        <Palette size={20} />
+        <UserPen size={20} />
       </button>
       <button className={navButtonClasses()} id="paintingNav" onClick={handleClick}>
-        <Image size={20} />
+        <Palette size={20} />
       </button>
       <button className={navButtonClasses()} id="galleryNav" onClick={handleClick}>
-        <GalleryVerticalEnd size={20} />
+        <Landmark size={20} />
       </button>
       <button className={navButtonClasses()} id="genreNav" onClick={handleClick}>
-        <Home size={20} />
+        <Drama size={20} />
       </button>
       <button
         className={navButtonClasses(favouritesEmpty())}
@@ -42,11 +42,11 @@ const NavBar = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
         <Star size={20} />
       </button>
       <button
-        className="navItem flex items-center justify-center ml-4 px-4 py-2 rounded-2xl shadow-md bg-green-100 text-green-700 hover:bg-orange-100 hover:text-orange-600 transition-colors duration-200"
+        className={navButtonClasses()}
         onClick={handleClick}
         id="aboutNav"
       >
-        About
+        <Info size={20} />
       </button>
     </div>
   );

@@ -85,6 +85,14 @@ const AboutView = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
                 with ease.
               </a>
             </li>
+            <li>
+              <a
+                href="https://lucide.dev/"
+                target="_blank"
+              >
+                Lucide - open-source icon library that provides vector files for displaying icons.
+              </a>
+            </li>
           </ul>
         </div>
 
