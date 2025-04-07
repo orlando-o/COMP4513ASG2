@@ -27,9 +27,9 @@ const SinglePainting = ({ painting, addToFavourites }) => {
       >
         <td className="px-4 py-2">
           <img
-            src={`https://res.cloudinary.com/funwebdev/image/upload/w_250/art/paintings/${painting.imageFileName}.jpg`}
+            src={`/images/paintings/square/${painting.imageFileName}.jpg`}
             alt={painting.title}
-            className="rounded"
+            className="rounded shadow-md"
             width={50}
             height={50}
           />

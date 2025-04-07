@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-const GenreInfo = (props) => {
-  useEffect(() => {}, [props.selectedGenre]);
-  if (!props.selectedGenre) {
+const GenreInfo = ({ selectedGenre }) => {
+  useEffect(() => {}, [selectedGenre]);
+  if (!selectedGenre) {
     return null;
   }
   return (
@@ -9,15 +9,19 @@ const GenreInfo = (props) => {
       className="content genreInfo border border-gray-300 p-4 m-4 rounded-lg shadow-md"
       id="genreInfo"
     >
-      <h2 className="text-xl font-semibold">{props.selectedGenre.genreName}</h2>
-      <p className="text-sm text-gray-700">{props.selectedGenre.description}</p>
+      <img
+        src={"/images/genres/" + selectedGenre.genreId + ".jpg"}
+        alt={selectedGenre.firstName + " " + selectedGenre.lastName}
+        className="rounded shadow-md w-50"
+      ></img>
+      <h2 className="text-xl font-semibold">{selectedGenre.genreName}</h2>
+      <p className="text-sm text-gray-700">{selectedGenre.description}</p>
       <p className="text-sm text-gray-700">
-        Era: {props.selectedGenre.eras.eraName} (
-        {props.selectedGenre.eras.eraYears})
+        Era: {selectedGenre.eras.eraName} ({selectedGenre.eras.eraYears})
       </p>
       <p>
         <a
-          href={props.selectedGenre.wikiLink}
+          href={selectedGenre.wikiLink}
           target="_blank"
           className="text-gray-500 hover:text-gray-700"
         >

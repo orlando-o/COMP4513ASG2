@@ -67,12 +67,7 @@ const GenreView = ({
           />
         )}
         <div>
-          {selectedGenre && (
-            <GenreInfo
-              addToFavourites={addToFavourites}
-              selectedGenre={selectedGenre}
-            />
-          )}
+          {selectedGenre && <GenreInfo selectedGenre={selectedGenre} />}
           {paintingList.length > 0 && (
             <PaintingsTable
               selectedOption={selectedGenre}

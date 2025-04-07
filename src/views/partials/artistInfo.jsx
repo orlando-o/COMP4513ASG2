@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-const ArtistInfo = (props) => {
-  useEffect(() => {}, [props.selectedArtist]);
-  if (!props.selectedArtist) {
+const ArtistInfo = ({ selectedArtist, addToFavourites }) => {
+  useEffect(() => {}, [selectedArtist]);
+  if (!selectedArtist) {
     return null;
   }
   return (
@@ -9,18 +9,21 @@ const ArtistInfo = (props) => {
       className="content ArtistInfo border border-gray-300 p-4 m-4 rounded-lg shadow-md"
       id="ArtistInfo"
     >
+      <img
+        src={"/images/artists/full/" + selectedArtist.artistId + ".jpg"}
+        alt={selectedArtist.firstName + " " + selectedArtist.lastName}
+        className="rounded shadow-md"
+      ></img>
       <h2 className="text-xl font-semibold">
-        {props.selectedArtist.firstName} {props.selectedArtist.lastName}
+        {selectedArtist.firstName} {selectedArtist.lastName}
       </h2>
-      <p className="text-sm text-gray-700">
-        {props.selectedArtist.nationality}
-      </p>
-      <p className="text-sm text-gray-700">{props.selectedArtist.gender}</p>
-      <p className="text-sm text-gray-700">{props.selectedArtist.years}</p>
-      <p className="text-sm text-gray-700">{props.selectedArtist.details}</p>
+      <p className="text-sm text-gray-700">{selectedArtist.nationality}</p>
+      <p className="text-sm text-gray-700">{selectedArtist.gender}</p>
+      <p className="text-sm text-gray-700">{selectedArtist.years}</p>
+      <p className="text-sm text-gray-700">{selectedArtist.details}</p>
       <p>
         <a
-          href={props.selectedArtist.wikiLink}
+          href={selectedArtist.wikiLink}
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-500 hover:text-gray-700"
@@ -31,7 +34,7 @@ const ArtistInfo = (props) => {
       <button
         className="mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
         onClick={() => {
-          props.addToFavourites(props.selectedArtist);
+          addToFavourites(selectedArtist);
         }}
       >
         Add To Favourites

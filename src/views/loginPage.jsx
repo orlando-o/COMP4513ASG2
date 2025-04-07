@@ -5,7 +5,7 @@ const LoginPage = (props) => {
     <>
       <figure>
         <img
-          src="\images\loginBackground.jpg"
+          src="\images\backgrounds\loginBackground.jpg"
           alt="Deciduous trees with a lense flair taken in Arecibo, Puerto Rico"
           className="fixed inset-0 -z-1 bg-cover"
         />
