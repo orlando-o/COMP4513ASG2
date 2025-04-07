@@ -15,3 +15,9 @@
   width: 25vw;
   z-index: 0; /* https://gis.stackexchange.com/questions/246689/leaflet-layer-control-and-legend */
 }
+
+body {
+  background-color: #f0fdf4; 
+  color: #065f46; 
+}
+

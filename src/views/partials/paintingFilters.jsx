@@ -68,7 +68,7 @@ const PaintingFilters = ({ setFilters, getStoredResponse, fetchApi }) => {
   };
 
   return (
-    <div className="border p-4 w-80 rounded shadow max-h-fit">
+    <div className="border p-6 w-80 rounded-2xl shadow-lg max-h-fit bg-white border-green-200">
       <h2 className="text-xl font-semibold mb-4 text-center">
         Painting Filters
       </h2>
@@ -224,12 +224,12 @@ const PaintingFilters = ({ setFilters, getStoredResponse, fetchApi }) => {
         <div className="flex justify-around">
           <button
             type="submit"
-            className="mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
+            className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
             Filter
           </button>
           <button
-            className="mt-2 px-4 py-2 bg-gray-500 rounded hover:bg-gray-600"
+            className="mt-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
             type="button"
             onClick={() => {
               setFilterType(null);
