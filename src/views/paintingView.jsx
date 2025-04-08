@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import Header from "./partials/header";
 import PaintingsTable from "./partials/paintingTables";
 import PaintingFilters from "./partials/paintingFilters";
-import "ldrs/bouncy";
+import "ldrs/ring";
 
 const PaintingView = ({
   redirect,
   addToFavourites,
   fetchApi,
-  storeResponse,
   getStoredResponse,
   openFavouritesModal,
   favouritesEmpty,
@@ -81,9 +80,13 @@ const PaintingView = ({
           fetchApi={fetchApi}
         />
         {loading && (
-          <div className="flex justify-center items-center h-100 w-full">
-            <l-Bouncy size="60" color="black" />{" "}
-            {/* https://uiball.com/ldrs/ */}
+          <div className="flex flex-col justify-center items-center h-screen w-full bg-[#f0fdf4] text-[#065f46] text-center px-4">
+            <p className="text-xl font-semibold mb-2 animate-pulse">
+              Loading...
+            </p>
+            <p className="text-sm">
+              Please allow for up to 1 min upon startup due to API warmup.
+            </p>
           </div>
         )}
         {paintingList.length > 0 && (

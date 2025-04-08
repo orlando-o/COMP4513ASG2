@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import GalleryInfo from "./partials/galleryInfo";
 import PaintingsTable from "./partials/paintingTables";
 import GalleryList from "./partials/galleryList";
-import "ldrs/bouncy";
+import "ldrs/ring";
 
 const GalleryView = ({
   redirect,
@@ -56,9 +56,13 @@ const GalleryView = ({
       />
       <div className="contentContainer flex flex-row">
         {loading && (
-          <div className="flex justify-center items-center h-100 w-full">
-            <l-Bouncy size="60" color="black" />{" "}
-            {/* https://uiball.com/ldrs/ */}
+          <div className="flex flex-col justify-center items-center h-screen w-full bg-[#f0fdf4] text-[#065f46] text-center px-4">
+            <p className="text-xl font-semibold mb-2 animate-pulse">
+              Loading...
+            </p>
+            <p className="text-sm">
+              Please allow for up to 1 min upon startup due to API warmup.
+            </p>
           </div>
         )}
         {galleryList.length > 0 && (

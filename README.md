@@ -1,6 +1,7 @@
 # COMP 4513 Assignment #2: React
 - Developed by: Orlando Ormon, Alyssa Landeta
 ## Overview
+Live at [PaintingsPlus](https://paintingsplus.ormon.ca/)
 This project is a single-page application built using React for COMP 4513. It retrieves and displays art-related data using a web API developed earlier in the course. The application consists of multiple views, including a login page, artist and gallery listings, and a painting viewer.
 
 ## Features

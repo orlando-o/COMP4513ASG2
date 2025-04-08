@@ -72,11 +72,6 @@ const AboutView = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
           </h2>
           <ul>
             <li>
-              <a href="https://uiball.com/ldrs/" target="_blank">
-                LDRS - Free, open-source loaders and spinners
-              </a>
-            </li>
-            <li>
               <a
                 href="https://fkhadra.github.io/react-toastify/"
                 target="_blank"
@@ -86,11 +81,9 @@ const AboutView = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
               </a>
             </li>
             <li>
-              <a
-                href="https://lucide.dev/"
-                target="_blank"
-              >
-                Lucide - open-source icon library that provides vector files for displaying icons.
+              <a href="https://lucide.dev/" target="_blank">
+                Lucide - open-source icon library that provides vector files for
+                displaying icons.
               </a>
             </li>
           </ul>
@@ -202,13 +195,6 @@ const AboutView = ({ redirect, openFavouritesModal, favouritesEmpty }) => {
                 target="_blank"
               >
                 GIS Stack Exchange
-              </a>
-            </li>
-            <li>
-              {"<l-bouncy />"} in galleryView.jsx, artistView.jsx,
-              genreView.jsx, & paintingView.jsx -{" "}
-              <a href="https://uiball.com/ldrs/" target="_blank">
-                LDRS 'Docs'
               </a>
             </li>
             <li>
